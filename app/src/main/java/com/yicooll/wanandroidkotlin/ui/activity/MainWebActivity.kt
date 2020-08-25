@@ -1,5 +1,6 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.os.Build
 import android.support.annotation.RequiresApi
@@ -20,7 +21,7 @@ class MainWebActivity : BaseActivity() {
     }
 
     override fun initView() {
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         var url = ""
         if (intent !== null) {
@@ -42,8 +43,8 @@ class MainWebActivity : BaseActivity() {
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     fun wvSetting() {
-
         val webSetting = webview.settings
         webSetting.javaScriptEnabled = true
         //允许js弹框

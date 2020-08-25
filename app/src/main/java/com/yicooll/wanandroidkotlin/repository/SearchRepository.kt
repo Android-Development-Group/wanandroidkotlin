@@ -18,7 +18,6 @@ class SearchRepository {
     }
 
     fun getSearchData(keyword: String, pageNum: Int) {
-
         val client = RetrofitUtil.getRetorfit()
         val service = client!!.create(SearchService::class.java)
         var url = "article/query/$pageNum/json"
@@ -30,14 +29,14 @@ class SearchRepository {
                     override fun onComplete() {
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(value: ModelSearch?) {
+                    override fun onNext(value: ModelSearch) {
                         searchLiveData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
+                    override fun onError(e: Throwable) {
                         searchLiveData.value = null
                     }
                 })

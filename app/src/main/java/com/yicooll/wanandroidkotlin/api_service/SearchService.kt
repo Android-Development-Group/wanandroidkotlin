@@ -4,9 +4,9 @@ import com.yicooll.wanandroidkotlin.entity.ModelSearch
 import io.reactivex.Observable
 import retrofit2.http.*
 
-interface  SearchService{
+interface SearchService {
 
     @POST
     @FormUrlEncoded
-    fun  searchArtical(@Url url:String,@Field("k")word:String):Observable<ModelSearch>
+    fun searchArtical(@Url url: String, @Field("k") word: String): Observable<ModelSearch>
 }

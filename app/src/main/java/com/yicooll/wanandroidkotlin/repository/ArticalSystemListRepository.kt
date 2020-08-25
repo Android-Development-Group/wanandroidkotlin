@@ -9,23 +9,22 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class ArticalSystemListRepository(cid: Int,pageNum:Int) {
+class ArticalSystemListRepository(cid: Int, pageNum: Int) {
 
     private var articalSystemListLiveData = MutableLiveData<ModelArticalSystemList>()
 
     init {
-        getArticalSystemList(cid,pageNum)
+        getArticalSystemList(cid, pageNum)
     }
 
     fun getArticalSystemListLiveData(): MutableLiveData<ModelArticalSystemList> {
         return articalSystemListLiveData
     }
 
-
-    fun getArticalSystemList(cid: Int,pageNum:Int) {
+    fun getArticalSystemList(cid: Int, pageNum: Int) {
         val client = RetrofitUtil.getRetorfit()
         val service = client!!.create(ArticalSystemService::class.java)
-        var url = "article/list/$pageNum/json?cid=$cid"
+        val url = "article/list/$pageNum/json?cid=$cid"
         service.getArticalSystemList(url)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -35,14 +34,14 @@ class ArticalSystemListRepository(cid: Int,pageNum:Int) {
 
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(value: ModelArticalSystemList?) {
+                    override fun onNext(value: ModelArticalSystemList) {
                         articalSystemListLiveData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
+                    override fun onError(e: Throwable) {
                         articalSystemListLiveData.value = null
                     }
                 })

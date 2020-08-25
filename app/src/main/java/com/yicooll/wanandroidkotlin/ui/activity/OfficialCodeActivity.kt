@@ -26,7 +26,7 @@ class OfficialCodeActivity : BaseActivity() {
     }
 
     override fun initView() {
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         tv_menu_center.text = "公众号"
         adapter = FragmentPagerAdapter(supportFragmentManager)
@@ -39,9 +39,8 @@ class OfficialCodeActivity : BaseActivity() {
         vm = ViewModelProviders.of(this).get(OfficialCodeViewModel::class.java)
         vm?.getOfficialCodeCategory()
         vm?.getOfficialCodeCategoryLiveData()?.observe(this, Observer {
-
             it?.let { it1 ->
-                if(it1.errorCode==0){
+                if (it1.errorCode == 0) {
                     officialCodeCategory.clear()
                     fragmentList.clear()
                     officialCodeCategory.addAll(it1.data)
@@ -50,15 +49,14 @@ class OfficialCodeActivity : BaseActivity() {
                         fragmentList.add(fragment)
                     }
                     adapter?.notifyDataSetChanged()
-                }else{
+                } else {
                     showToast(it1.errorMsg)
                 }
             }
-            if(it==null){
+            if (it == null) {
                 showToast(Constant.NETWORK_ERROR)
             }
         })
-
     }
 
     inner class FragmentPagerAdapter(fm: FragmentManager) : android.support.v4.app.FragmentPagerAdapter(fm) {
@@ -73,7 +71,5 @@ class OfficialCodeActivity : BaseActivity() {
         override fun getPageTitle(position: Int): CharSequence? {
             return officialCodeCategory[position].name
         }
-
     }
-
 }

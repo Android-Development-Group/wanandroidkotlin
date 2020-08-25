@@ -12,7 +12,6 @@ import io.reactivex.schedulers.Schedulers
 
 class ProjectRepository {
 
-
     private var projectListLiveData = MutableLiveData<ModelProjectList>()
     private var projectCategoryLiveData = MutableLiveData<ModelProjectCategory>()
 
@@ -23,7 +22,6 @@ class ProjectRepository {
     fun getProjectCategoryLiveData(): MutableLiveData<ModelProjectCategory> {
         return projectCategoryLiveData
     }
-
 
     fun getProjectByType(cid: Int, pageNum: Int) {
         val client = RetrofitUtil.getRetorfit()
@@ -38,22 +36,20 @@ class ProjectRepository {
 
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(value: ModelProjectList?) {
+                    override fun onNext(value: ModelProjectList) {
                         projectListLiveData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
+                    override fun onError(e: Throwable) {
                         projectListLiveData.value = null
                     }
-
                 })
     }
 
     fun getProjectCategory() {
-
         val client = RetrofitUtil.getRetorfit()
         val service = client!!.create(ProjectService::class.java)
         service.getProjectCategory()
@@ -65,14 +61,14 @@ class ProjectRepository {
 
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(value: ModelProjectCategory?) {
+                    override fun onNext(value: ModelProjectCategory) {
                         projectCategoryLiveData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
+                    override fun onError(e: Throwable) {
                         projectCategoryLiveData.value = null
                     }
                 })

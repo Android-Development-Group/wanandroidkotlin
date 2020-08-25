@@ -14,11 +14,9 @@ import com.yicooll.wanandroidkotlin.ui.adapter.ArticalSystemChildrenAdapter
 import com.yicooll.wanandroidkotlin.utils.ToActivityHelper
 import com.yicooll.wanandroidkotlin.viewModel.ArticalSystemViewModel
 import kotlinx.android.synthetic.main.activity_artical_system.*
-import kotlinx.android.synthetic.main.activity_artical_system_list.*
 import kotlinx.android.synthetic.main.include_noback_toolbar.*
 
 class ArticalSystemActivity : BaseActivity() {
-
 
     private var vm: ArticalSystemViewModel? = null
     private var categoryData = ArrayList<ModelSystemCatogry.Data>()
@@ -32,7 +30,7 @@ class ArticalSystemActivity : BaseActivity() {
     }
 
     override fun initView() {
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         tv_menu_center.text = "体系"
 
@@ -57,7 +55,6 @@ class ArticalSystemActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-
         srv_system.setOnRefreshListener {
             mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
@@ -65,15 +62,12 @@ class ArticalSystemActivity : BaseActivity() {
         vm = ViewModelProviders.of(this).get(ArticalSystemViewModel::class.java)
         vm?.systemCatogoryLiveData?.observe(this, Observer {
             categoryData.clear()
-            it?.let {
-
-                it1 ->
+            it?.let { it1 ->
                 if (it1.errorCode == 0) {
                     categoryData.addAll(it1.data)
                 } else {
                     showToast(it1.errorMsg)
                 }
-
             }
             if (it == null) {
                 showToast(Constant.NETWORK_ERROR)

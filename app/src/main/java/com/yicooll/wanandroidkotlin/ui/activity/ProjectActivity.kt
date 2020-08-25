@@ -37,7 +37,7 @@ class ProjectActivity : BaseActivity() {
     }
 
     override fun initView() {
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         tv_menu_right.visibility = View.VISIBLE
         tv_menu_right.text = "项目"
@@ -58,7 +58,6 @@ class ProjectActivity : BaseActivity() {
         srv_project.isRefreshing = false
         return@Handler true
     }
-
 
     override fun initEvent() {
         if (!EventBus.getDefault().isRegistered(this))
@@ -100,7 +99,6 @@ class ProjectActivity : BaseActivity() {
         }
 
         tv_menu_right.setOnClickListener {
-
             TypePopupWindow(this@ProjectActivity, ProjectCategoryAdapter(R.layout.adapter_category_item, categoryList), selectPosition)
         }
     }

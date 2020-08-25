@@ -6,7 +6,6 @@ import com.yicooll.wanandroidkotlin.entity.ModelGoodsInfo
 
 class ShopDetialRepository {
 
-
     private var goodsInfoLiveData = MutableLiveData<ModelGoodsInfo>()
     private var recommendLiveData = MutableLiveData<List<List<ModelGoodsInfo>>>()
     private var commentLiveData = MutableLiveData<List<ModelGoodsComment>>()
@@ -20,7 +19,6 @@ class ShopDetialRepository {
     fun getCommentLiveData(): MutableLiveData<List<ModelGoodsComment>> {
         return commentLiveData
     }
-
 
     fun getRecommendLiveData(): MutableLiveData<List<List<ModelGoodsInfo>>> {
         return recommendLiveData

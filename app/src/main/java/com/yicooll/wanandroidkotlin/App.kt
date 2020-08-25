@@ -1,8 +1,8 @@
 package com.yicooll.wanandroidkotlin
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()

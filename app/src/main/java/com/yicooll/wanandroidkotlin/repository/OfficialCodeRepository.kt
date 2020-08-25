@@ -12,66 +12,64 @@ import io.reactivex.schedulers.Schedulers
 
 class OfficialCodeRepository {
 
+    private var officialCodeCategoryLiveData = MutableLiveData<ModelOfficialCodeCategory>()
+    private var officialCodeListLiveData = MutableLiveData<ModelOfficialCodeList>()
 
-    private var officialCodeCategoryLiveData=MutableLiveData<ModelOfficialCodeCategory>()
-    private var officialCodeListLiveData=MutableLiveData<ModelOfficialCodeList>()
-
-    fun getOfficialCodeCategoryLiveData():MutableLiveData<ModelOfficialCodeCategory>{
+    fun getOfficialCodeCategoryLiveData(): MutableLiveData<ModelOfficialCodeCategory> {
         return officialCodeCategoryLiveData
     }
-    fun getOfficialCodeListLiveData():MutableLiveData<ModelOfficialCodeList>{
+
+    fun getOfficialCodeListLiveData(): MutableLiveData<ModelOfficialCodeList> {
         return officialCodeListLiveData
     }
 
     fun getOfficialCodeCategory() {
         val client = RetrofitUtil.getRetorfit()
-        val service=client!!.create(OfficialCodeService::class.java)
+        val service = client!!.create(OfficialCodeService::class.java)
         service.getOfficialCodeCategory()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object :Observer<ModelOfficialCodeCategory>{
+                .subscribe(object : Observer<ModelOfficialCodeCategory> {
                     override fun onComplete() {
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(value: ModelOfficialCodeCategory?) {
-                        officialCodeCategoryLiveData.value=value
+                    override fun onNext(value: ModelOfficialCodeCategory) {
+                        officialCodeCategoryLiveData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
-                        officialCodeCategoryLiveData.value=null
+                    override fun onError(e: Throwable) {
+                        officialCodeCategoryLiveData.value = null
                     }
                 })
-
     }
 
-    fun getOfficialCodeList(id:Int,pageNum:Int){
+    fun getOfficialCodeList(id: Int, pageNum: Int) {
         val client = RetrofitUtil.getRetorfit()
-        val service=client!!.create(OfficialCodeService::class.java)
-        val url="wxarticle/list/$id/$pageNum/json"
+        val service = client!!.create(OfficialCodeService::class.java)
+        val url = "wxarticle/list/$id/$pageNum/json"
         service.getOfficialCodeList(url)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object :Observer<ModelOfficialCodeList>{
+                .subscribe(object : Observer<ModelOfficialCodeList> {
                     override fun onComplete() {
 
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(value: ModelOfficialCodeList?) {
-                        officialCodeListLiveData.value=value
+                    override fun onNext(value: ModelOfficialCodeList) {
+                        officialCodeListLiveData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
-                        officialCodeListLiveData.value=null
+                    override fun onError(e: Throwable) {
+                        officialCodeListLiveData.value = null
                     }
                 })
     }
-
 }

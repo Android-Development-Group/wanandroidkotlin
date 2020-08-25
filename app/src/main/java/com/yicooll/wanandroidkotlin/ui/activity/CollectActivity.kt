@@ -26,8 +26,7 @@ class CollectActivity : BaseActivity() {
     }
 
     override fun initView() {
-
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         tv_menu_center.text = "项目"
 
@@ -44,21 +43,19 @@ class CollectActivity : BaseActivity() {
             if (pageNum == 0)
                 collectData.clear()
             it?.let { it1 ->
-                if(it1.errorCode==0){
-                    if (it1.data?.datas != null) {
-                        collectData.addAll(it1.data.datas)
+                if (it1.errorCode == 0) {
+                    collectData.addAll(it1.data.datas)
 
-                        if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
-                            adapter?.loadMoreEnd()
-                        } else {
-                            adapter?.loadMoreComplete()
-                        }
+                    if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
+                        adapter?.loadMoreEnd()
+                    } else {
+                        adapter?.loadMoreComplete()
                     }
-                }else{
+                } else {
                     showToast(it1.errorMsg)
                 }
             }
-            if(it==null){
+            if (it == null) {
                 showToast(Constant.NETWORK_ERROR)
             }
         })
@@ -68,11 +65,10 @@ class CollectActivity : BaseActivity() {
         }, rv_collect)
 
         adapter?.setOnItemClickListener { adapter, view, position ->
-
-            val bundle= Bundle()
+            val bundle = Bundle()
             bundle.putString("url", collectData[position].link)
             bundle.putString("title", collectData[position].title)
-            ToActivityHelper.getInstance()?.toActivity(this,MainWebActivity::class.java,bundle)
+            ToActivityHelper.getInstance()?.toActivity(this, MainWebActivity::class.java, bundle)
 
         }
     }

@@ -12,7 +12,6 @@ import com.yicooll.wanandroidkotlin.ui.fragment.GoodsCommentFragment
 import com.yicooll.wanandroidkotlin.ui.fragment.GoodsInfoDetailMainFragment
 import com.yicooll.wanandroidkotlin.ui.fragment.GoodsInfoMainFragment
 import kotlinx.android.synthetic.main.activity_shop_detail.*
-import kotlinx.android.synthetic.main.fragment_goods_info_main.*
 
 class ShopDetailActivity : BaseActivity() {
 
@@ -27,8 +26,7 @@ class ShopDetailActivity : BaseActivity() {
     }
 
     override fun initView() {
-
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         val view = layoutInflater.inflate(R.layout.include_tab_toolbar, llMenu)
         tablayout = view.findViewById<TabLayout>(R.id.tab_detial_type)
         menuTitle = view.findViewById<TextView>(R.id.tv_menu_center)
@@ -47,7 +45,6 @@ class ShopDetailActivity : BaseActivity() {
     override fun initEvent() {
 
     }
-
 
     fun setViewContent(scrollToBottom: Boolean) {
         if (scrollToBottom) {
@@ -68,7 +65,6 @@ class ShopDetailActivity : BaseActivity() {
 
     inner class VpAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
-
             return fragmentList[position]
         }
 
@@ -79,7 +75,6 @@ class ShopDetailActivity : BaseActivity() {
         override fun getPageTitle(position: Int): CharSequence? {
             return titleArray[position]
         }
-
     }
 
 }

@@ -1,5 +1,6 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -53,6 +54,7 @@ class IndexFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_index, container, false)
     }
 
+    @SuppressLint("InflateParams")
     override fun initView() {
         articalAdapter = IndexArticalAdapter(com.yicooll.wanandroidkotlin.R.layout.wan_item_of_article_list, articalList)
         rv_list.adapter = articalAdapter
@@ -73,7 +75,7 @@ class IndexFragment : BaseFragment() {
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .startTurning(Constant.BANNER_TURN)
 
-        var rvBlock = view.findViewById<RecyclerView>(R.id.rv_block)
+        val rvBlock = view.findViewById<RecyclerView>(R.id.rv_block)
         rvBlock.adapter = IndexBlockAdapter(activity!!, getIndexFuntionBlock())
         rvBlock.layoutManager = GridLayoutManager(activity, 4, GridLayoutManager.VERTICAL, false)
 

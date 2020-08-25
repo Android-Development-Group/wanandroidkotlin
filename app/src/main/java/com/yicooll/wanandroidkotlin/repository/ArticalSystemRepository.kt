@@ -11,40 +11,36 @@ import io.reactivex.schedulers.Schedulers
 
 class ArticalSystemRepository {
 
-
-    val catogryLiveData=MutableLiveData<ModelSystemCatogry>()
+    val catogryLiveData = MutableLiveData<ModelSystemCatogry>()
 
     init {
         getArticalSystemCatogry()
     }
 
-
-    fun  getSystemCatogryLiveData():MutableLiveData<ModelSystemCatogry>{
+    fun getSystemCatogryLiveData(): MutableLiveData<ModelSystemCatogry> {
         return catogryLiveData
     }
 
-
     fun getArticalSystemCatogry() {
-
-        val client=RetrofitUtil.getRetorfit()
-        val service=client!!.create(ArticalSystemService::class.java)
+        val client = RetrofitUtil.getRetorfit()
+        val service = client!!.create(ArticalSystemService::class.java)
         service.getActicalSystemCatogry()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object :Observer<ModelSystemCatogry>{
+                .subscribe(object : Observer<ModelSystemCatogry> {
                     override fun onComplete() {
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
                     }
 
-                    override fun onNext(model: ModelSystemCatogry?) {
-                        catogryLiveData.value=model
+                    override fun onNext(model: ModelSystemCatogry) {
+                        catogryLiveData.value = model
                     }
 
-                    override fun onError(e: Throwable?) {
-                        catogryLiveData.value=null
+                    override fun onError(e: Throwable) {
+                        catogryLiveData.value = null
                     }
                 })
     }

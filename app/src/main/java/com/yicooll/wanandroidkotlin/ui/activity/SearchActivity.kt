@@ -35,10 +35,8 @@ class SearchActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-
         vm = ViewModelProviders.of(this).get(SearchViewModel::class.java)
         obt_search.setOnClickListener {
-
             if (!TextUtils.isEmpty(edt_search.text.toString())) {
                 pageNum = 1
                 vm?.getSearchData(edt_search.text.toString(), pageNum)
@@ -73,7 +71,6 @@ class SearchActivity : BaseActivity() {
         }, rv_search)
 
         adapter?.setOnItemClickListener { adapter, view, position ->
-
             val bundle = Bundle()
             bundle.putString("url", searchData[position].link)
             bundle.putString("title", searchData[position].title)

@@ -22,7 +22,6 @@ class LoginRepository(username: String, password: String) {
     }
 
     fun doLogin(username: String, password: String) {
-
         val client = RetrofitUtil.getRetorfit()
         val service = client!!.create(UserService::class.java)
         service.doLogin(username, password)
@@ -34,19 +33,17 @@ class LoginRepository(username: String, password: String) {
 
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
 
                     }
 
-                    override fun onNext(value: ModelLogin?) {
+                    override fun onNext(value: ModelLogin) {
                         liveLoginData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
-                        liveLoginData.value=null
+                    override fun onError(e: Throwable) {
+                        liveLoginData.value = null
                     }
-
                 })
     }
-
 }

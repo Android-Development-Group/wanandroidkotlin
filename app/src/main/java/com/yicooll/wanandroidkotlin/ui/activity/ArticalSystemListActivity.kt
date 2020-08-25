@@ -21,17 +21,17 @@ class ArticalSystemListActivity : BaseActivity() {
     private var adapter: ArticalSystemListAdapter? = null
     private val articalList = ArrayList<ModelArticalSystemList.Data.Data>()
     private var vm: ArticalSystemListViewModel? = null
-    private var pageNum=0
+    private var pageNum = 0
 
     override fun getContentViewLayoutId(): Int {
         return R.layout.activity_artical_system_list
     }
 
     override fun initView() {
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
-        if(intent!=null)
-        tv_menu_center.text = intent.getStringExtra("title")
+        if (intent != null)
+            tv_menu_center.text = intent.getStringExtra("title")
 
         adapter = ArticalSystemListAdapter(R.layout.wan_item_of_article_list, articalList)
         rv_artical_system.adapter = adapter
@@ -43,57 +43,54 @@ class ArticalSystemListActivity : BaseActivity() {
                 android.R.color.holo_red_light)
     }
 
-    private val mHandler=Handler{
-        pageNum=0
-        vm?.getArticalSystemList(intent.getIntExtra("cid",0),pageNum)
-        srv_system_list.isRefreshing=false
+    private val mHandler = Handler {
+        pageNum = 0
+        vm?.getArticalSystemList(intent.getIntExtra("cid", 0), pageNum)
+        srv_system_list.isRefreshing = false
         return@Handler true
     }
 
     override fun initEvent() {
-
         srv_system_list.setOnRefreshListener {
-            mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE,Constant.LOADING_DELAYED)
+            mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
 
         vm = ViewModelProviders.of(this).get(ArticalSystemListViewModel::class.java)
-        if(intent!=null)
-        vm?.initRequest(intent.getIntExtra("cid",0),pageNum)
+        if (intent != null)
+            vm?.initRequest(intent.getIntExtra("cid", 0), pageNum)
 
         vm?.getArticalSystemListLiveData()?.observe(this, Observer {
-
-            if(pageNum==1){
+            if (pageNum == 1) {
                 articalList.clear()
             }
             it?.let { it1 ->
-                if(it1.errorCode==0){
+                if (it1.errorCode == 0) {
                     articalList.addAll(it1.data.datas)
                     adapter?.notifyDataSetChanged()
-                    if(it1.data.datas.size <Constant.ONE_PAGE_COUNT){
+                    if (it1.data.datas.size < Constant.ONE_PAGE_COUNT) {
                         adapter?.loadMoreEnd()
-                    }else{
+                    } else {
                         adapter?.loadMoreComplete()
                     }
-                }else{
+                } else {
                     showToast(it1.errorMsg)
                 }
             }
-            if(it==null){
+            if (it == null) {
                 showToast(Constant.NETWORK_ERROR)
             }
         })
 
 
         adapter?.setOnLoadMoreListener({
-            vm?.getArticalSystemList(intent.getIntExtra("cid",0),++pageNum)
-        },rv_artical_system)
+            vm?.getArticalSystemList(intent.getIntExtra("cid", 0), ++pageNum)
+        }, rv_artical_system)
 
         adapter?.setOnItemClickListener { adapter, view, position ->
-
-            val bundle= Bundle()
+            val bundle = Bundle()
             bundle.putString("url", articalList[position].link)
             bundle.putString("title", articalList[position].title)
-            ToActivityHelper.getInstance()?.toActivity(this@ArticalSystemListActivity,MainWebActivity::class.java,bundle)
+            ToActivityHelper.getInstance()?.toActivity(this@ArticalSystemListActivity, MainWebActivity::class.java, bundle)
 
         }
 

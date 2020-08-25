@@ -26,7 +26,6 @@ class IndexBlockAdapter(context: Context, data: List<Template>) : RecyclerView.A
         this.templateList.addAll(data)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ViewHolder {
 
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.wan_item_of_block_list, parent, false))

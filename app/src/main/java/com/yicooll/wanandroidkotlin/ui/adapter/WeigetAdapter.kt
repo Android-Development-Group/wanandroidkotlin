@@ -10,8 +10,8 @@ import com.yicooll.wanandroidkotlin.entity.Template
 class WeigetAdapter(layoutId: Int, datas: ArrayList<Template>) : BaseQuickAdapter<Template, BaseViewHolder>(layoutId, datas) {
 
     override fun convert(helper: BaseViewHolder?, item: Template?) {
-         helper?.getView<TextView>(R.id.tv_title)?.text=item?.templateName
-         helper?.getView<ImageView>(R.id.iv_icon)?.setBackgroundResource(item?.rsId!!)
-         helper?.getView<TextView>(R.id.tv_describe)?.text=item?.describe
+        helper?.getView<TextView>(R.id.tv_title)?.text = item?.templateName
+        helper?.getView<ImageView>(R.id.iv_icon)?.setBackgroundResource(item?.rsId!!)
+        helper?.getView<TextView>(R.id.tv_describe)?.text = item?.describe
     }
 }

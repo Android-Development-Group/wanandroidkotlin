@@ -12,11 +12,11 @@ class CollectAdapter(layoutId: Int, datas: List<ModelCollect.Data.Data>) : BaseQ
     override fun convert(helper: BaseViewHolder?, item: ModelCollect.Data.Data?) {
         Glide.with(mContext).load(item?.envelopePic).into(helper?.getView(R.id.iv_img)!!)
         if (!item?.desc.equals("")) {
-            helper?.getView<TextView>(R.id.tv_des)?.text = item?.desc
+            helper.getView<TextView>(R.id.tv_des)?.text = item?.desc
         } else {
-            helper?.getView<TextView>(R.id.tv_des)?.text = item?.title
+            helper.getView<TextView>(R.id.tv_des)?.text = item?.title
         }
-        helper?.getView<TextView>(R.id.tv_author)?.text = "作者：" + item?.author
-        helper?.getView<TextView>(R.id.tv_date)?.text = Util.formatData(item?.publishTime)
+        helper.getView<TextView>(R.id.tv_author)?.text = String.format("作者：%s", item?.author)
+        helper.getView<TextView>(R.id.tv_date)?.text = Util.formatData(item?.publishTime)
     }
 }

@@ -12,16 +12,13 @@ import io.reactivex.schedulers.Schedulers
 
 class CollectRepository {
 
-
     private val collectLiveData = MutableLiveData<ModelCollect>()
-
 
     fun getCollectLiveData(): MutableLiveData<ModelCollect> {
         return collectLiveData
     }
 
     fun getCollectList(pageNum: Int) {
-
         val clicent = RetrofitUtil.getRetorfit()
         val service = clicent!!.create(CollectService::class.java)
         val url = "lg/collect/list/$pageNum/json"
@@ -34,19 +31,17 @@ class CollectRepository {
 
                     }
 
-                    override fun onSubscribe(d: Disposable?) {
+                    override fun onSubscribe(d: Disposable) {
 
                     }
 
-                    override fun onNext(value: ModelCollect?) {
+                    override fun onNext(value: ModelCollect) {
                         collectLiveData.value = value
                     }
 
-                    override fun onError(e: Throwable?) {
+                    override fun onError(e: Throwable) {
                         collectLiveData.value = null
                     }
-
                 })
     }
-
 }

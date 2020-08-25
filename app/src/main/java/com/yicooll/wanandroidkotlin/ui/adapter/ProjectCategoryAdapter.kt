@@ -1,7 +1,6 @@
 package com.yicooll.wanandroidkotlin.ui.adapter
 
 import android.view.View
-import android.view.WindowId
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -20,29 +19,29 @@ class ProjectCategoryAdapter(layoutId: Int, datas: List<ModelProjectCategory.Dat
 
     override fun convert(helper: BaseViewHolder?, item: ModelProjectCategory.Data?) {
         if (helper?.adapterPosition == currentPosition) {
-            helper?.getView<TextView>(R.id.tv_category_name)?.setBackgroundResource(R.color.bg_main_color)
+            helper.getView<TextView>(R.id.tv_category_name)?.setBackgroundResource(R.color.bg_main_color)
         } else {
             helper?.getView<TextView>(R.id.tv_category_name)?.setBackgroundResource(R.color.bg_white)
         }
         helper?.getView<TextView>(R.id.tv_category_name)?.text = item?.name
 
         helper?.getView<TextView>(R.id.tv_category_name)?.setOnClickListener {
-            currentPosition = helper?.adapterPosition
+            currentPosition = helper.adapterPosition
             if (listener != null) {
-                listener!!.onItemClick(it,helper?.adapterPosition)
+                listener!!.onItemClick(it, helper.adapterPosition)
             }
             notifyDataSetChanged()
         }
     }
 
-    fun itemState(position:Int){
-        currentPosition=position
+    fun itemState(position: Int) {
+        currentPosition = position
         notifyDataSetChanged()
     }
 
 
     interface OnCustomerItemClickListener {
-        fun onItemClick(view: View,position : Int)
+        fun onItemClick(view: View, position: Int)
     }
 
 }

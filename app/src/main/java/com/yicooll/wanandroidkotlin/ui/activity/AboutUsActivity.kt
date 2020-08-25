@@ -10,7 +10,7 @@ class AboutUsActivity : BaseActivity() {
     }
 
     override fun initView() {
-        var llMenu = getHeadMenu()
+        val llMenu = getHeadMenu()
         layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
         tv_menu_center.text = "关于我们"
     }

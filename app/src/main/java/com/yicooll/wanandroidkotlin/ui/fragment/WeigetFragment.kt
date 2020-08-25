@@ -37,15 +37,12 @@ class WeigetFragment : BaseFragment() {
 
     override fun initEvent() {
         adapter?.setOnItemClickListener { adapter, view, position ->
-
             when (position) {
                 0 -> ToActivityHelper.getInstance()?.toActivity(activity!!, ShopDetailActivity::class.java)
-                1-> ToActivityHelper.getInstance()?.toActivity(activity!!, CustomerDialogActivity::class.java)
+                1 -> ToActivityHelper.getInstance()?.toActivity(activity!!, CustomerDialogActivity::class.java)
             }
-
         }
     }
-
 
     fun getWeigetData(): ArrayList<Template> {
         templateList.clear()

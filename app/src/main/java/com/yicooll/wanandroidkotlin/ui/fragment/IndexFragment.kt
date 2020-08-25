@@ -56,7 +56,7 @@ class IndexFragment : BaseFragment() {
 
     @SuppressLint("InflateParams")
     override fun initView() {
-        articalAdapter = IndexArticalAdapter(com.yicooll.wanandroidkotlin.R.layout.wan_item_of_article_list, articalList)
+        articalAdapter = IndexArticalAdapter(R.layout.wan_item_of_article_list, articalList)
         rv_list.adapter = articalAdapter
         rv_list.layoutManager = LinearLayoutManager(activity)
         articalAdapter?.setOnLoadMoreListener({
@@ -65,13 +65,13 @@ class IndexFragment : BaseFragment() {
 
         val view = layoutInflater.inflate(R.layout.index_header, null, false)
         articalAdapter!!.addHeaderView(view)
-        banner = view.findViewById<ConvenientBanner<*>>(R.id.cb_banner)
+        banner = view.findViewById(R.id.cb_banner)
         banner!!.setPages(CBViewHolderCreator<BannerHolder> {
             if (mImageLoadHoder == null) {
                 mImageLoadHoder = BannerHolder()
             }
             return@CBViewHolderCreator mImageLoadHoder
-        }, bannerList as List<Nothing>).setPageIndicator(intArrayOf(com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_normal, com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_selected))
+        }, bannerList as List<Nothing>).setPageIndicator(intArrayOf(R.mipmap.ic_indicator_normal, com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_selected))
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .startTurning(Constant.BANNER_TURN)
 
@@ -97,7 +97,7 @@ class IndexFragment : BaseFragment() {
     override fun initEvent() {
 
         srv_layout.setOnRefreshListener {
-            handler.sendEmptyMessageDelayed(Constant.FRESH_CODE,Constant.LOADING_DELAYED)
+            handler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
         vm = ViewModelProviders.of(this).get(IndexViewModel::class.java)
         vm?.getBannerLiveData()?.observe(this, Observer {
@@ -173,10 +173,10 @@ class IndexFragment : BaseFragment() {
 
     fun getIndexFuntionBlock(): List<Template> {
         templateList.clear()
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_1, "体系", ""))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_2, "项目", ""))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_3, "公众号", ""))
-        templateList.add(Template(com.yicooll.wanandroidkotlin.R.mipmap.wan_icon_4, "搜索", ""))
+        templateList.add(Template(R.mipmap.wan_icon_1, "体系", ""))
+        templateList.add(Template(R.mipmap.wan_icon_2, "项目", ""))
+        templateList.add(Template(R.mipmap.wan_icon_3, "公众号", ""))
+        templateList.add(Template(R.mipmap.wan_icon_4, "搜索", ""))
         return templateList
     }
 

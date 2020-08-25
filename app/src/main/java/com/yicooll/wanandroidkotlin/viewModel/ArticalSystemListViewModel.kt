@@ -6,14 +6,14 @@ import android.arch.lifecycle.MutableLiveData
 import com.yicooll.wanandroidkotlin.entity.ModelArticalSystemList
 import com.yicooll.wanandroidkotlin.repository.ArticalSystemListRepository
 
-class ArticalSystemListViewModel(application: Application):AndroidViewModel(application) {
+class ArticalSystemListViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var repository:ArticalSystemListRepository?=null
-    private var articalSystemListLiveData : MutableLiveData<ModelArticalSystemList>?=null
+    private var repository: ArticalSystemListRepository? = null
+    private var articalSystemListLiveData: MutableLiveData<ModelArticalSystemList>? = null
 
-    fun initRequest(cid:Int,pageNum:Int){
-        repository=ArticalSystemListRepository(cid,pageNum)
-        articalSystemListLiveData= repository?.getArticalSystemListLiveData()
+    fun initRequest(cid: Int, pageNum: Int) {
+        repository = ArticalSystemListRepository(cid, pageNum)
+        articalSystemListLiveData = repository?.getArticalSystemListLiveData()
     }
 
 
@@ -22,7 +22,7 @@ class ArticalSystemListViewModel(application: Application):AndroidViewModel(appl
     }
 
 
-    fun getArticalSystemList(cid: Int,pageNum:Int) {
-        repository?.getArticalSystemList(cid,pageNum)
+    fun getArticalSystemList(cid: Int, pageNum: Int) {
+        repository?.getArticalSystemList(cid, pageNum)
     }
 }

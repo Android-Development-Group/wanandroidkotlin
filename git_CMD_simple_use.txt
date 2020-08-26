@@ -70,6 +70,13 @@
 
 
 		
-    获取签名信息
+    七、获取签名信息
 
-    $ keytool -list -v -keystore *.jks签名文件路径 //获取签名信息
+        1.根据签名文件获取
+        $ keytool -list -v -keystore *.jks签名文件路径 //获取签名信息
+
+        2.根据签名apk获取
+        $ keytool -printcert -jarfile *.apk文件路径 //获取签名信息
+
+        3.根据*.RSA文件获取(将*.apk文件改成*.zip后，解压，获取到META-INF/*.RSA文件。)
+        $ keytool -printcert -file *.RSA //获取签名信息

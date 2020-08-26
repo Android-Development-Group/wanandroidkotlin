@@ -137,3 +137,16 @@ dependencies {
     implementation 'de.greenrobot:eventbus:3.0.0-beta1'
 
 }
+
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        if (outputFileName.endsWith('.apk')) {
+            //这里使用之前定义apk文件名称
+            outputFileName = "${project.archivesBaseName}_${releaseTime()}_${variant.buildType.name}.apk"
+        }
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd_HHmmss")
+}

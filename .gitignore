@@ -9,3 +9,11 @@
 /captures
 .externalNativeBuild
 /.idea/
+.idea/caches/
+.idea/checkstyle-idea.xml
+.idea/codeStyles/
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/runConfigurations.xml

@@ -1,5 +1,7 @@
 package com.yicooll.wanandroidkotlin.entity
 
-data class Template(val rsId:Int,val templateName:String,val describe:String) {
+import java.io.Serializable
+
+data class Template(val rsId: Int, val templateName: String, val describe: String) : Serializable {
 
 }

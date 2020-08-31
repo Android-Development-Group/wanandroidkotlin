@@ -20,11 +20,11 @@ import java.security.MessageDigest;
  * Created by 吴天强 on 2018/11/8.
  */
 
-public class BlurTransformation extends BitmapTransformation {
+public class JavaBlurTransformation extends BitmapTransformation {
     private Context context;
     private int blurRadius = 20;//模糊度 0=< blurRadius >=25
 
-    public BlurTransformation(Context context) {
+    public JavaBlurTransformation(Context context) {
         this.context = context;
     }
 
@@ -32,7 +32,7 @@ public class BlurTransformation extends BitmapTransformation {
      * @param context    context
      * @param blurRadius 模糊度 最大25
      */
-    public BlurTransformation(Context context, int blurRadius) {
+    public JavaBlurTransformation(Context context, int blurRadius) {
         this.context = context;
         this.blurRadius = blurRadius;
     }

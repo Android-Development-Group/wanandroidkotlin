@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.include_noback_toolbar.*
 
 class AboutUsActivity : BaseActivity() {
     override fun getContentViewLayoutId(): Int {
-       return R.layout.activity_about_us
+        return R.layout.activity_about_us
     }
 
     override fun initView() {
@@ -16,7 +16,6 @@ class AboutUsActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-
 
 
     }

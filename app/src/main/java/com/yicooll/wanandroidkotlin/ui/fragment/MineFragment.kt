@@ -31,8 +31,8 @@ class MineFragment : BaseFragment() {
 
 
     override fun initView() {
-        ImageUtils.loadImageBlur(iv_bg, url)
-        ImageUtils.loadImageCircle(iv_head, url)
+        ImageUtils.loadImageBlur(iv_bg!!, url)
+        ImageUtils.loadImageCircle(iv_head!!, url)
     }
 
     override fun initEvent() {

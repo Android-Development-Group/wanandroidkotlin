@@ -6,7 +6,7 @@ class Event<T> constructor(action: String) {
     private var data: T? = null
 
     init {
-        this.action=action
+        this.action = action
     }
 
     constructor(action: String, data: T) : this(action) {

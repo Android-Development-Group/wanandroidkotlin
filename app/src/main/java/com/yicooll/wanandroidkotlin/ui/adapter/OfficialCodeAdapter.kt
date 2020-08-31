@@ -11,9 +11,9 @@ class OfficialCodeAdapter(layoutId: Int, data: ArrayList<ModelOfficialCodeList.D
     override fun convert(helper: BaseViewHolder?, item: ModelOfficialCodeList.Data.DataX?) {
         helper?.getView<TextView>(R.id.tv_item_name)?.text = item?.title
         if ((helper?.adapterPosition!! + 1) % 2 == 0) {
-            helper.getView<TextView>(R.id.tv_item_name)!!.setBackgroundResource(R.color.bg_lose_yellow)
+            helper.getView<TextView>(R.id.tv_item_name)?.setBackgroundResource(R.color.bg_lose_yellow)
         } else {
-            helper.getView<TextView>(R.id.tv_item_name)!!.setBackgroundResource(R.color.bg_lose_blue)
+            helper.getView<TextView>(R.id.tv_item_name)?.setBackgroundResource(R.color.bg_lose_blue)
         }
     }
 }

@@ -1,11 +1,13 @@
 package com.yicooll.wanandroidkotlin.entity
 
+import java.io.Serializable
+
 
 data class ModelOfficialCodeList(
         val `data`: Data,
         val errorCode: Int,
         val errorMsg: String
-) {
+) : Serializable {
     data class Data(
             val curPage: Int,
             val datas: List<DataX>,
@@ -14,7 +16,7 @@ data class ModelOfficialCodeList(
             val pageCount: Int,
             val size: Int,
             val total: Int
-    ) {
+    ) : Serializable {
         data class DataX(
                 val apkLink: String,
                 val author: String,
@@ -40,11 +42,11 @@ data class ModelOfficialCodeList(
                 val userId: Int,
                 val visible: Int,
                 val zan: Int
-        ) {
+        ) : Serializable {
             data class Tag(
                     val name: String,
                     val url: String
-            )
+            ) : Serializable
         }
     }
 }

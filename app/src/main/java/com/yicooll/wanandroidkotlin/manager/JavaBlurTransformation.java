@@ -1,5 +1,6 @@
 package com.yicooll.wanandroidkotlin.manager;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,7 +9,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
@@ -54,6 +55,7 @@ public class JavaBlurTransformation extends BitmapTransformation {
      * @param outHeight 输出的高度
      * @return 模糊处理后的Bitmap
      */
+    @SuppressLint("ObsoleteSdkInt")
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private Bitmap blurBitmap(Context context, Bitmap image, int outWidth, int outHeight) {
         // 将缩小后的图片做为预渲染的图片

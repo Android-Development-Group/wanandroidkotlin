@@ -2,10 +2,10 @@ package com.yicooll.wanandroidkotlin.ui.fragment
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.ui.activity.AboutUsActivity
@@ -29,7 +29,6 @@ class MineFragment : BaseFragment() {
         displayView()
     }
 
-
     override fun initView() {
         ImageUtils.loadImageBlur(iv_bg!!, url)
         ImageUtils.loadImageCircle(iv_head!!, url)
@@ -45,9 +44,9 @@ class MineFragment : BaseFragment() {
             displayView()
         }
         rl_collect.setOnClickListener {
-            if(UserHelper.getInstance()?.isLogin(activity as Activity)!!){
+            if (UserHelper.getInstance()?.isLogin(activity as Activity)!!) {
                 ToActivityHelper.getInstance()!!.toActivity(activity!!, CollectActivity::class.java)
-            }else{
+            } else {
                 ToActivityHelper.getInstance()!!.toActivity(activity!!, LoginActivity::class.java)
             }
         }
@@ -71,7 +70,6 @@ class MineFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         return inflater.inflate(R.layout.fragment_mine, container, false)
     }
 

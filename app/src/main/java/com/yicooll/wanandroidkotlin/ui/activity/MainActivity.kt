@@ -1,7 +1,7 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentTransaction
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.ui.fragment.IndexFragment

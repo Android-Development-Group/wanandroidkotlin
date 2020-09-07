@@ -1,8 +1,8 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeCategory
 import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeList
 import com.yicooll.wanandroidkotlin.repository.OfficialCodeRepository
@@ -11,11 +11,12 @@ class OfficialCodeViewModel(application: Application) : AndroidViewModel(applica
 
     private var officialCodeCategoryLiveData: MutableLiveData<ModelOfficialCodeCategory>? = null
     private var repository: OfficialCodeRepository? = null
-    private var officialCodeListLiveData:MutableLiveData<ModelOfficialCodeList>?=null
+    private var officialCodeListLiveData: MutableLiveData<ModelOfficialCodeList>? = null
 
     init {
         repository = OfficialCodeRepository()
     }
+
     fun getOfficialCodeCategoryLiveData(): MutableLiveData<ModelOfficialCodeCategory>? {
         return officialCodeCategoryLiveData
     }
@@ -24,14 +25,13 @@ class OfficialCodeViewModel(application: Application) : AndroidViewModel(applica
         return officialCodeListLiveData
     }
 
-
     fun getOfficialCodeCategory() {
         repository?.getOfficialCodeCategory()
         officialCodeCategoryLiveData = repository?.getOfficialCodeCategoryLiveData()
     }
 
-    fun getOfficialCodeList(id:Int,pageNum:Int){
-        repository?.getOfficialCodeList(id,pageNum)
-        officialCodeListLiveData=repository?.getOfficialCodeListLiveData()
+    fun getOfficialCodeList(id: Int, pageNum: Int) {
+        repository?.getOfficialCodeList(id, pageNum)
+        officialCodeListLiveData = repository?.getOfficialCodeListLiveData()
     }
 }

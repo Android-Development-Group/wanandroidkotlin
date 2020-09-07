@@ -9,7 +9,6 @@ class PreferenceHelper {
     companion object {
         private val PREFERENCE_NAME = Constant.appName
 
-
         fun putString(context: Context, key: String, value: String) {
             val sp = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
             val editor = sp.edit()
@@ -23,7 +22,6 @@ class PreferenceHelper {
             editor.putStringSet(key, value)
             editor.commit()
         }
-
 
         fun putInt(context: Context, key: String, value: Int) {
             val sp = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
@@ -53,15 +51,14 @@ class PreferenceHelper {
             editor.commit()
         }
 
-
-        fun getString(context: Context, key: String, defaultValue: String): String {
+        fun getString(context: Context, key: String, defaultValue: String): String? {
             val sp = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
             return sp.getString(key, defaultValue)
         }
 
-        fun getStringSet(context: Context, key: String): Set<String>?{
+        fun getStringSet(context: Context, key: String): Set<String>? {
             val sp = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
-            return sp.getStringSet(key,null)
+            return sp.getStringSet(key, null)
         }
 
         fun getInt(context: Context, key: String, defaultValue: Int): Int {
@@ -84,8 +81,7 @@ class PreferenceHelper {
             return sp.getLong(key, defaultValue)
         }
 
-
-        fun getString(context: Context, key: String): String {
+        fun getString(context: Context, key: String): String? {
             val sp = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
             return sp.getString(key, null)
         }

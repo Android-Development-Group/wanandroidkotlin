@@ -1,13 +1,12 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
-
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.ui.fragment.goodschild.GoodsConfigFragment

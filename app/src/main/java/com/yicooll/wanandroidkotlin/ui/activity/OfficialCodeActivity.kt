@@ -1,9 +1,8 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
@@ -36,9 +35,9 @@ class OfficialCodeActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProviders.of(this).get(OfficialCodeViewModel::class.java)
+        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(OfficialCodeViewModel::class.java)
         vm?.getOfficialCodeCategory()
-        vm?.getOfficialCodeCategoryLiveData()?.observe(this, Observer {
+        vm?.getOfficialCodeCategoryLiveData()?.observe(this, {
             it?.let { it1 ->
                 if (it1.errorCode == 0) {
                     officialCodeCategory.clear()
@@ -59,7 +58,7 @@ class OfficialCodeActivity : BaseActivity() {
         })
     }
 
-    inner class FragmentPagerAdapter(fm: FragmentManager) : android.support.v4.app.FragmentPagerAdapter(fm) {
+    inner class FragmentPagerAdapter(fm: FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return fragmentList[position]
         }

@@ -1,11 +1,10 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.EventAction
 import com.yicooll.wanandroidkotlin.R
@@ -67,9 +66,9 @@ class ProjectActivity : BaseActivity() {
             mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
 
-        vm = ViewModelProviders.of(this).get(ProjectViewModel::class.java)
+        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(ProjectViewModel::class.java)
         vm?.getProjectCategory()
-        vm?.getProjectCategoryLiveData()?.observe(this, Observer {
+        vm?.getProjectCategoryLiveData()?.observe(this, {
             categoryList.clear()
             it?.let { it1 ->
                 if (it1.errorCode == 0) {
@@ -104,7 +103,7 @@ class ProjectActivity : BaseActivity() {
     }
 
     private fun setProjectList() {
-        vm?.getProjectListLiveData()?.observe(this, Observer {
+        vm?.getProjectListLiveData()?.observe(this, {
             if (pageNum == 1) {
                 projectList.clear()
             }

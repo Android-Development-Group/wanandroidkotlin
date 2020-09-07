@@ -15,20 +15,21 @@ object Density {
     private var oldDensityDpi = -1
     private var oldScaledDensity = -1f
 
-    fun setCustomDensity(activity: Activity,application:Application ){
-      var appDisplayMetrics:DisplayMetrics=application.resources.displayMetrics
+    fun setCustomDensity(activity: Activity, application: Application) {
+        var appDisplayMetrics: DisplayMetrics = application.resources.displayMetrics
 
-        if(sNoncompatDensity==0.toFloat()){
-            sNoncompatDensity=appDisplayMetrics.density
-            sNoncompatScaledDensity=appDisplayMetrics.scaledDensity
+        if (sNoncompatDensity == 0.toFloat()) {
+            sNoncompatDensity = appDisplayMetrics.density
+            sNoncompatScaledDensity = appDisplayMetrics.scaledDensity
 
-            application.registerComponentCallbacks(object :ComponentCallbacks{
+            application.registerComponentCallbacks(object : ComponentCallbacks {
+
                 override fun onLowMemory() {
 
                 }
 
-                override fun onConfigurationChanged(newConfig: Configuration?) {
-                    if (newConfig != null && newConfig.fontScale > 0) {
+                override fun onConfigurationChanged(p0: Configuration) {
+                    if (p0.fontScale > 0) {
                         sNoncompatScaledDensity = application.resources.displayMetrics.scaledDensity
                     }
                 }
@@ -48,31 +49,31 @@ object Density {
     }
 
 
-    fun resetDensity(activity: Activity,application:Application ){
-        var appDisplayMetrics:DisplayMetrics=application.resources.displayMetrics
-        if(oldDensity==-1f){
-            oldDensity=appDisplayMetrics.density
+    fun resetDensity(activity: Activity, application: Application) {
+        var appDisplayMetrics: DisplayMetrics = application.resources.displayMetrics
+        if (oldDensity == -1f) {
+            oldDensity = appDisplayMetrics.density
         }
-        if(oldDensityDpi==-1){
-            oldDensityDpi=appDisplayMetrics.densityDpi
+        if (oldDensityDpi == -1) {
+            oldDensityDpi = appDisplayMetrics.densityDpi
         }
-        if(oldScaledDensity==-1f){
-            oldScaledDensity=appDisplayMetrics.scaledDensity
+        if (oldScaledDensity == -1f) {
+            oldScaledDensity = appDisplayMetrics.scaledDensity
         }
 
-        if(sNoncompatDensity==0.toFloat()){
-            sNoncompatDensity=appDisplayMetrics.density
-            sNoncompatScaledDensity=appDisplayMetrics.scaledDensity
+        if (sNoncompatDensity == 0.toFloat()) {
+            sNoncompatDensity = appDisplayMetrics.density
+            sNoncompatScaledDensity = appDisplayMetrics.scaledDensity
 
-            application.registerComponentCallbacks(object :ComponentCallbacks{
+            application.registerComponentCallbacks(object : ComponentCallbacks {
                 override fun onLowMemory() {
 
                 }
 
-                override fun onConfigurationChanged(newConfig: Configuration?) {
-                    if (newConfig != null && newConfig.fontScale > 0) {
+                override fun onConfigurationChanged(p0: Configuration) {
+                    if (p0.fontScale > 0) {
                         sNoncompatScaledDensity = application.resources.displayMetrics.scaledDensity
-                        oldScaledDensity *= newConfig.fontScale
+                        oldScaledDensity *= p0.fontScale
                     }
                 }
             })

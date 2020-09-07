@@ -1,6 +1,6 @@
 package com.yicooll.wanandroidkotlin.repository
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.yicooll.wanandroidkotlin.api_service.ProjectService
 import com.yicooll.wanandroidkotlin.entity.ModelProjectCategory
 import com.yicooll.wanandroidkotlin.entity.ModelProjectList

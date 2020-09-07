@@ -2,7 +2,6 @@ package com.yicooll.wanandroidkotlin.ui.weiget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.webkit.WebView
 
@@ -27,8 +26,8 @@ class HinderWebView(context: Context, attrs: AttributeSet) : WebView(context, at
             }
 
             MotionEvent.ACTION_MOVE -> {
-                var nowY = event.y
-                var nowX = event.x
+                val nowY = event.y
+                val nowX = event.x
                 if (Math.abs(nowY - oldY) >= Math.abs(nowX - oldX)) {
                     //滑动到顶部让父控件重新获得触摸事件
                     if (nowY - oldY > 0 && t == 0) {

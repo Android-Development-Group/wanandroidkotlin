@@ -2,16 +2,14 @@ package com.yicooll.wanandroidkotlin.ui.fragment
 
 
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.Constant
-
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeList
@@ -29,8 +27,7 @@ class OfficialCodeListFragment : BaseFragment() {
     private var adapter: OfficialCodeAdapter? = null
     private var data = ArrayList<ModelOfficialCodeList.Data.DataX>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_official_code_list, container, false)
     }
@@ -61,11 +58,11 @@ class OfficialCodeListFragment : BaseFragment() {
         }
 
 
-        vm = ViewModelProviders.of(this).get(OfficialCodeViewModel::class.java)
+        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(OfficialCodeViewModel::class.java)
         if (arguments != null) {
             vm?.getOfficialCodeList(arguments!!.getInt("typeId"), pageNum)
         }
-        vm?.getOfficialCodeListLiveData()?.observe(this, Observer {
+        vm?.getOfficialCodeListLiveData()?.observe(this, {
             if (pageNum == 1) {
                 data.clear()
             }

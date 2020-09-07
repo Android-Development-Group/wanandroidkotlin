@@ -1,11 +1,10 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
 import android.view.View
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.tabs.TabLayout
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.ui.fragment.GoodsCommentFragment
@@ -28,8 +27,8 @@ class ShopDetailActivity : BaseActivity() {
     override fun initView() {
         val llMenu = getHeadMenu()
         val view = layoutInflater.inflate(R.layout.include_tab_toolbar, llMenu)
-        tablayout = view.findViewById<TabLayout>(R.id.tab_detial_type)
-        menuTitle = view.findViewById<TextView>(R.id.tv_menu_center)
+        tablayout = view.findViewById(R.id.tab_detial_type)
+        menuTitle = view.findViewById(R.id.tv_menu_center)
 
         fragmentList.clear()
         val mainFragment = GoodsInfoMainFragment()
@@ -63,7 +62,7 @@ class ShopDetailActivity : BaseActivity() {
         viewpager.currentItem = position
     }
 
-    inner class VpAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    inner class VpAdapter(fm: FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return fragmentList[position]
         }

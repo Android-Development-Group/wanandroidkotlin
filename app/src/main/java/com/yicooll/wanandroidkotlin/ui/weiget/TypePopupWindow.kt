@@ -1,14 +1,14 @@
 package com.yicooll.wanandroidkotlin.ui.weiget
 
 import android.content.Context
-import android.widget.PopupWindow
 import android.graphics.drawable.ColorDrawable
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.Gravity
-import android.view.ViewGroup
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.PopupWindow
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.yicooll.wanandroidkotlin.EventAction
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.entity.Event
@@ -16,7 +16,7 @@ import com.yicooll.wanandroidkotlin.ui.adapter.ProjectCategoryAdapter
 import de.greenrobot.event.EventBus
 
 
-class TypePopupWindow(context: Context, adapter: ProjectCategoryAdapter,position:Int) {
+class TypePopupWindow(context: Context, adapter: ProjectCategoryAdapter, position: Int) {
 
     init {
         //准备PopupWindow的布局View
@@ -37,7 +37,7 @@ class TypePopupWindow(context: Context, adapter: ProjectCategoryAdapter,position
         }
 
         adapter.setListener(object : ProjectCategoryAdapter.OnCustomerItemClickListener {
-            override fun onItemClick(view: View,position:Int) {
+            override fun onItemClick(view: View, position: Int) {
                 EventBus.getDefault().post(Event(EventAction.PROJECT_CATEGORY, position))
                 popupWindow.dismiss()
             }

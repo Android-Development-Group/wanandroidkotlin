@@ -1,11 +1,10 @@
 package com.yicooll.wanandroidkotlin.ui.fragment.goodschild
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.entity.GoodsConfigBean
@@ -16,8 +15,7 @@ import kotlinx.android.synthetic.main.fragment_goods_config.*
 class GoodsConfigFragment : BaseFragment() {
 
     private val configData = ArrayList<GoodsConfigBean>()
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_goods_config, container, false)
     }

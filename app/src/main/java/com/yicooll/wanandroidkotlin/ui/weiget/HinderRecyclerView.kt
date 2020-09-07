@@ -1,9 +1,9 @@
 package com.yicooll.wanandroidkotlin.ui.weiget
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.MotionEvent
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * Describe: 滑动中阻碍事件传递 当滑动到顶部 将事件传递给父类
@@ -24,8 +24,8 @@ class HinderRecyclerView(context: Context, attrs: AttributeSet) : RecyclerView(c
             }
 
             MotionEvent.ACTION_MOVE -> {
-                var nowY = event.y
-                var nowX = event.x
+                val nowY = event.y
+                val nowX = event.x
                 if (Math.abs(nowY - oldY) >= Math.abs(nowX - oldX)) {
                     //滑动到顶部让父控件重新获得触摸事件
                     if (nowY - oldY > 0 && t == 0) {

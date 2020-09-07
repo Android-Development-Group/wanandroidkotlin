@@ -1,10 +1,10 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.widget.LinearLayoutManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.yicooll.wanandroidkotlin.Constant
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
@@ -59,7 +59,7 @@ class ArticalSystemActivity : BaseActivity() {
             mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
 
-        vm = ViewModelProviders.of(this).get(ArticalSystemViewModel::class.java)
+        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(ArticalSystemViewModel::class.java)
         vm?.systemCatogoryLiveData?.observe(this, Observer {
             categoryData.clear()
             it?.let { it1 ->

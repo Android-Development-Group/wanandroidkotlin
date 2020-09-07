@@ -1,6 +1,6 @@
 package com.yicooll.wanandroidkotlin.repository
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.yicooll.wanandroidkotlin.api_service.ArticalSystemService
 import com.yicooll.wanandroidkotlin.entity.ModelSystemCatogry
 import com.yicooll.wanandroidkotlin.network.RetrofitUtil

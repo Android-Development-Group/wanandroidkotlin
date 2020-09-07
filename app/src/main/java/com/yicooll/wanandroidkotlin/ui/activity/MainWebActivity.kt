@@ -1,13 +1,12 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.os.Build
-import android.support.annotation.RequiresApi
-import android.support.v7.app.AlertDialog
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main_web.*
@@ -26,7 +25,7 @@ class MainWebActivity : BaseActivity() {
         var url = ""
         if (intent !== null) {
             tv_menu_center.text = intent.getStringExtra("title")
-            url = intent.getStringExtra("url")
+            url = intent.getStringExtra("url")!!
         }
         wvSetting()
         webview.loadUrl(url)
@@ -78,7 +77,7 @@ class MainWebActivity : BaseActivity() {
                 val b = AlertDialog.Builder(this@MainWebActivity)
                 b.setTitle("Alert")
                 b.setMessage(message)
-                b.setPositiveButton(android.R.string.ok, DialogInterface.OnClickListener { dialog, which -> result?.confirm() })
+                b.setPositiveButton(android.R.string.ok, { dialog, which -> result?.confirm() })
                 b.setCancelable(false)
                 b.create().show()
                 return true

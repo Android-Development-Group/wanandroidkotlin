@@ -1,6 +1,6 @@
 package com.yicooll.wanandroidkotlin
 
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 
 class App : MultiDexApplication() {
 

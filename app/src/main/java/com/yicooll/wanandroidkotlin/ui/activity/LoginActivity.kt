@@ -1,11 +1,10 @@
 package com.yicooll.wanandroidkotlin.ui.activity
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
 import com.yicooll.wanandroidkotlin.entity.ModelLogin
@@ -25,14 +24,14 @@ class LoginActivity : BaseActivity() {
     override fun initView() {
         val llMenu: LinearLayout? = getHeadMenu()
         val view: View = layoutInflater.inflate(R.layout.include_base_toolbar, llMenu)
-        val tvTitle: TextView = view.findViewById<TextView>(R.id.tv_menu_center)
+        val tvTitle: TextView = view.findViewById(R.id.tv_menu_center)
         tvTitle.text = "登录"
 
         tv_login.observer(et_usernmae, et_password)
     }
 
     override fun initEvent() {
-        vm = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(LoginViewModel::class.java)
 
         tv_login.setOnClickListener {
             invalidateInfo()
@@ -60,7 +59,7 @@ class LoginActivity : BaseActivity() {
         }
         vm?.doLogin(et_usernmae.text.toString().trim(), et_password.text.toString().trim())
 
-        vm!!.getLodinData()?.observe(this, Observer {
+        vm!!.getLodinData()?.observe(this, {
             it?.let { it1 ->
                 if (it1.errorCode == 0) {
                     loginSuccess(it1)

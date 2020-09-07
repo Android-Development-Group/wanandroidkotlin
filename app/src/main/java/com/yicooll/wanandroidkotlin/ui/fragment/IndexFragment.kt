@@ -2,19 +2,19 @@ package com.yicooll.wanandroidkotlin.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
 import com.bigkoo.convenientbanner.ConvenientBanner
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator
 import com.bigkoo.convenientbanner.holder.Holder
@@ -71,7 +71,7 @@ class IndexFragment : BaseFragment() {
                 mImageLoadHoder = BannerHolder()
             }
             return@CBViewHolderCreator mImageLoadHoder
-        }, bannerList as List<Nothing>).setPageIndicator(intArrayOf(R.mipmap.ic_indicator_normal, com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_selected))
+        }, bannerList as List<Nothing>).setPageIndicator(intArrayOf(R.mipmap.ic_indicator_normal, R.mipmap.ic_indicator_selected))
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .startTurning(Constant.BANNER_TURN)
 
@@ -99,7 +99,7 @@ class IndexFragment : BaseFragment() {
         srv_layout.setOnRefreshListener {
             handler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
-        vm = ViewModelProviders.of(this).get(IndexViewModel::class.java)
+        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(IndexViewModel::class.java)
         vm?.getBannerLiveData()?.observe(this, Observer {
 
             bannerList.clear()
@@ -119,7 +119,7 @@ class IndexFragment : BaseFragment() {
 
         })
 
-        vm?.getArticalLiveData()?.observe(this, Observer {
+        vm?.getArticalLiveData()?.observe(this, {
             if (pageNum == 1) {
                 articalList.clear()
             }

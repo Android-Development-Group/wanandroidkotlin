@@ -1,6 +1,6 @@
 package com.yicooll.wanandroidkotlin.repository
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.yicooll.wanandroidkotlin.api_service.IndexService
 import com.yicooll.wanandroidkotlin.entity.ModelIndexArtical
 import com.yicooll.wanandroidkotlin.entity.ModelIndexBanner

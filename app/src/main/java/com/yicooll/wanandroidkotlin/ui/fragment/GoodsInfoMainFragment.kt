@@ -1,23 +1,21 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bigkoo.convenientbanner.ConvenientBanner
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator
 import com.bigkoo.convenientbanner.holder.Holder
 import com.bumptech.glide.Glide
 import com.yicooll.wanandroidkotlin.Constant
-
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseFragment
 import com.yicooll.wanandroidkotlin.entity.ModelGoodsComment
@@ -54,7 +52,7 @@ class GoodsInfoMainFragment : BaseFragment() {
                 mImageLoadHoder = BannerHolder()
             }
             return@CBViewHolderCreator mImageLoadHoder
-        }, goodsHeadImg as List<Nothing>).setPageIndicator(intArrayOf(com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_normal, com.yicooll.wanandroidkotlin.R.mipmap.ic_indicator_selected))
+        }, goodsHeadImg as List<Nothing>).setPageIndicator(intArrayOf(R.mipmap.ic_indicator_normal, R.mipmap.ic_indicator_selected))
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .startTurning(Constant.BANNER_TURN)
 
@@ -76,8 +74,8 @@ class GoodsInfoMainFragment : BaseFragment() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProviders.of(this).get(ShopDetialViewModel::class.java)
-        vm?.getGoodsInfoLiveData()?.observe(this, Observer {
+        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(ShopDetialViewModel::class.java)
+        vm?.getGoodsInfoLiveData()?.observe(this, {
             goodsHeadImg.clear()
             it?.let { it1 ->
                 if (it1.goodsHeadImg != null) {
@@ -87,7 +85,7 @@ class GoodsInfoMainFragment : BaseFragment() {
                 }
             }
         })
-        vm?.getRecommendLiveData()?.observe(this, Observer {
+        vm?.getRecommendLiveData()?.observe(this, {
             recommentGropList.clear()
             it?.let { it1 ->
                 recommentGropList.addAll(it1)
@@ -95,7 +93,7 @@ class GoodsInfoMainFragment : BaseFragment() {
             }
         })
 
-        vm?.getCommentLiveData()?.observe(this, Observer {
+        vm?.getCommentLiveData()?.observe(this, {
             commentList.clear()
             it?.let { it1 ->
                 commentList.addAll(it1)
@@ -121,10 +119,10 @@ class GoodsInfoMainFragment : BaseFragment() {
     fun setGoodsInfo(goodsInfo: ModelGoodsInfo) {
 
         tv_goods_name.text = goodsInfo.goodsName
-        tv_goods_price.text = "￥" + goodsInfo.goodsPrice
-        tv_old_price.text = "￥" + goodsInfo.goodsOldPrice
-        tv_comment_count.text = "用户点评(" + goodsInfo.commentCount + ")"
-        tv_praise_rate.text = "好评率" + goodsInfo.praiseRate
+        tv_goods_price.text = "￥%s".format(goodsInfo.goodsPrice)
+        tv_old_price.text = "￥%s".format(goodsInfo.goodsOldPrice)
+        tv_comment_count.text = "用户点评(%s)".format(goodsInfo.commentCount)
+        tv_praise_rate.text = "好评率%s".format(goodsInfo.praiseRate)
 
     }
 

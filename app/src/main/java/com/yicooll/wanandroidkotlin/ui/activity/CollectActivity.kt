@@ -36,7 +36,7 @@ class CollectActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(CollectViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(CollectViewModel::class.java)
         vm?.getCollectList(pageNum)
         vm?.getCollectLiveData()?.observe(this, {
             if (pageNum == 0)

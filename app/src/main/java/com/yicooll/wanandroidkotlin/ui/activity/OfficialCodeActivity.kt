@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.include_noback_toolbar.*
 
 class OfficialCodeActivity : BaseActivity() {
 
-
     private var vm: OfficialCodeViewModel? = null
     private var officialCodeCategory = ArrayList<ModelOfficialCodeCategory.Data>()
     private var fragmentList = ArrayList<Fragment>()
@@ -35,7 +34,7 @@ class OfficialCodeActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(OfficialCodeViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(OfficialCodeViewModel::class.java)
         vm?.getOfficialCodeCategory()
         vm?.getOfficialCodeCategoryLiveData()?.observe(this, {
             it?.let { it1 ->

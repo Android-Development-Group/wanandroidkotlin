@@ -31,7 +31,7 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(LoginViewModel::class.java)
+        vm = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         tv_login.setOnClickListener {
             invalidateInfo()

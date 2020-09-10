@@ -1,13 +1,12 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yicooll.wanandroidkotlin.entity.ModelGoodsComment
 import com.yicooll.wanandroidkotlin.entity.ModelGoodsInfo
 import com.yicooll.wanandroidkotlin.repository.ShopDetialRepository
 
-class ShopDetialViewModel(application: Application) : AndroidViewModel(application) {
+class ShopDetialViewModel : ViewModel() {
 
     private var repository: ShopDetialRepository? = null
     private var goodsInfoLiveData = MutableLiveData<ModelGoodsInfo>()

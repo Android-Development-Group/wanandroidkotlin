@@ -35,7 +35,7 @@ class GoodsCommentFragment : BaseFragment() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(ShopDetialViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(ShopDetialViewModel::class.java)
         vm?.getCommentLiveData()?.observe(this, {
             commentList.clear()
             it?.let { it1 ->

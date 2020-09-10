@@ -1,12 +1,11 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yicooll.wanandroidkotlin.entity.ModelSearch
 import com.yicooll.wanandroidkotlin.repository.SearchRepository
 
-class SearchViewModel(application: Application) : AndroidViewModel(application) {
+class SearchViewModel : ViewModel() {
 
     private var repository: SearchRepository? = null
     private var searchLiveData: MutableLiveData<ModelSearch>? = null

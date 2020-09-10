@@ -38,14 +38,14 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private val mFragmentList = java.util.ArrayList<Fragment>()
+    private val mFragmentList = ArrayList<Fragment>()
     override fun getContentViewLayoutId(): Int {
         return R.layout.activity_main
     }
 
     fun changeFragment(tag: String?) {
         hideFragment()
-        var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         var fragment: Fragment? = supportFragmentManager.findFragmentByTag(tag)
         if (fragment != null) {
             transaction.show(fragment)
@@ -74,7 +74,7 @@ class MainActivity : BaseActivity() {
      * 隐藏所有的fragment
      */
     fun hideFragment() {
-        var transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         for (f in mFragmentList) {
             transaction.hide(f)
         }

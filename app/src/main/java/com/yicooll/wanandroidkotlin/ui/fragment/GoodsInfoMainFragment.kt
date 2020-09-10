@@ -74,7 +74,7 @@ class GoodsInfoMainFragment : BaseFragment() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(ShopDetialViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(ShopDetialViewModel::class.java)
         vm?.getGoodsInfoLiveData()?.observe(this, {
             goodsHeadImg.clear()
             it?.let { it1 ->

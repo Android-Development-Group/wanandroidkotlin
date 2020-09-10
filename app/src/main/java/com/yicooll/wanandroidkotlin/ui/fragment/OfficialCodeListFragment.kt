@@ -52,13 +52,11 @@ class OfficialCodeListFragment : BaseFragment() {
     }
 
     override fun initEvent() {
-
         srv_official_code.setOnRefreshListener {
             mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
 
-
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(OfficialCodeViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(OfficialCodeViewModel::class.java)
         if (arguments != null) {
             vm?.getOfficialCodeList(arguments!!.getInt("typeId"), pageNum)
         }

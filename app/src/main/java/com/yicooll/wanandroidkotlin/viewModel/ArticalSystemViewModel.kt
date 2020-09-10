@@ -1,12 +1,11 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yicooll.wanandroidkotlin.entity.ModelSystemCatogry
 import com.yicooll.wanandroidkotlin.repository.ArticalSystemRepository
 
-class ArticalSystemViewModel(application: Application) : AndroidViewModel(application) {
+class ArticalSystemViewModel : ViewModel() {
 
     var repository: ArticalSystemRepository? = null
     var systemCatogoryLiveData: MutableLiveData<ModelSystemCatogry>? = null

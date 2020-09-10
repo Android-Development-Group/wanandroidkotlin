@@ -66,7 +66,7 @@ class ProjectActivity : BaseActivity() {
             mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
 
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(ProjectViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(ProjectViewModel::class.java)
         vm?.getProjectCategory()
         vm?.getProjectCategoryLiveData()?.observe(this, {
             categoryList.clear()

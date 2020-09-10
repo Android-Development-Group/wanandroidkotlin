@@ -1,12 +1,11 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yicooll.wanandroidkotlin.entity.ModelCollect
 import com.yicooll.wanandroidkotlin.repository.CollectRepository
 
-class CollectViewModel(application: Application) : AndroidViewModel(application) {
+class CollectViewModel : ViewModel() {
 
     private var collectLiveData: MutableLiveData<ModelCollect>? = null
     private var repository: CollectRepository? = null

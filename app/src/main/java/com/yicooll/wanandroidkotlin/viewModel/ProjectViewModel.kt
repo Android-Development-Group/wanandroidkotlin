@@ -1,13 +1,12 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yicooll.wanandroidkotlin.entity.ModelProjectCategory
 import com.yicooll.wanandroidkotlin.entity.ModelProjectList
 import com.yicooll.wanandroidkotlin.repository.ProjectRepository
 
-class ProjectViewModel(application: Application) : AndroidViewModel(application) {
+class ProjectViewModel : ViewModel() {
 
     private var repository: ProjectRepository? = null
     private var projectListLiveData: MutableLiveData<ModelProjectList>? = null

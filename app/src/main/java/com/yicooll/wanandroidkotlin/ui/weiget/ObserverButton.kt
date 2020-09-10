@@ -11,7 +11,7 @@ import android.widget.TextView
 import com.yicooll.wanandroidkotlin.R
 import java.util.ArrayList
 
-class ObserverButton(context: Context, attrs: AttributeSet) : TextView(context, attrs) {
+class ObserverButton(context: Context, attrs: AttributeSet) : androidx.appcompat.widget.AppCompatTextView(context, attrs) {
     private val editTextList = ArrayList<EditText>()
 
     private var canPress: Boolean = false

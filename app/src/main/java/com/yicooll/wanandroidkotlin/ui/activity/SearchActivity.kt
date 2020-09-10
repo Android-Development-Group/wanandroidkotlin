@@ -34,7 +34,7 @@ class SearchActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(SearchViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(SearchViewModel::class.java)
         obt_search.setOnClickListener {
             if (!TextUtils.isEmpty(edt_search.text.toString())) {
                 pageNum = 1

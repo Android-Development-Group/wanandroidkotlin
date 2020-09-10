@@ -1,16 +1,15 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yicooll.wanandroidkotlin.entity.ModelIndexArtical
 import com.yicooll.wanandroidkotlin.entity.ModelIndexBanner
 import com.yicooll.wanandroidkotlin.repository.IndexRepository
 
-class IndexViewModel(application: Application) : AndroidViewModel(application) {
+class IndexViewModel : ViewModel() {
 
-    private var indexBannerLiveData: MutableLiveData<ModelIndexBanner>? = null
     private var repository: IndexRepository? = null
+    private var indexBannerLiveData: MutableLiveData<ModelIndexBanner>? = null
     private var indexArticalLiveData: MutableLiveData<ModelIndexArtical>? = null
 
     init {

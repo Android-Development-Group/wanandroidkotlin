@@ -2,19 +2,19 @@ package com.yicooll.wanandroidkotlin.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import androidx.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bigkoo.convenientbanner.ConvenientBanner
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator
 import com.bigkoo.convenientbanner.holder.Holder
@@ -95,13 +95,11 @@ class IndexFragment : BaseFragment() {
     }
 
     override fun initEvent() {
-
         srv_layout.setOnRefreshListener {
             handler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(activity!!.application).create(IndexViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(IndexViewModel::class.java)
         vm?.getBannerLiveData()?.observe(this, Observer {
-
             bannerList.clear()
             it?.let { it1 ->
                 if (it1.errorCode == 0) {
@@ -115,8 +113,6 @@ class IndexFragment : BaseFragment() {
             if (it == null) {
                 showToast(Constant.NETWORK_ERROR)
             }
-
-
         })
 
         vm?.getArticalLiveData()?.observe(this, {
@@ -135,24 +131,18 @@ class IndexFragment : BaseFragment() {
         })
 
         banner?.setOnItemClickListener {
-
             val bundle = Bundle()
             bundle.putString("url", bannerList[it].url)
             bundle.putString("title", bannerList[it].title)
             ToActivityHelper.getInstance()?.toActivity(activity as Activity, MainWebActivity::class.java, bundle)
-
         }
 
         articalAdapter?.setOnItemClickListener { adapter, view, position ->
-
             val bundle = Bundle()
             bundle.putString("url", articalList[position].link)
             bundle.putString("title", articalList[position].title)
             ToActivityHelper.getInstance()?.toActivity(activity as Activity, MainWebActivity::class.java, bundle)
-
         }
-
-
     }
 
     inner class BannerHolder : Holder<ModelIndexBanner.Data> {
@@ -169,7 +159,6 @@ class IndexFragment : BaseFragment() {
         }
 
     }
-
 
     fun getIndexFuntionBlock(): List<Template> {
         templateList.clear()

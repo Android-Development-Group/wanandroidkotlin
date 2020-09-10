@@ -59,7 +59,7 @@ class ArticalSystemActivity : BaseActivity() {
             mHandler.sendEmptyMessageDelayed(Constant.FRESH_CODE, Constant.LOADING_DELAYED)
         }
 
-        vm = ViewModelProvider.AndroidViewModelFactory.getInstance(application).create(ArticalSystemViewModel::class.java)
+        vm = ViewModelProvider.NewInstanceFactory().create(ArticalSystemViewModel::class.java)
         vm?.systemCatogoryLiveData?.observe(this, Observer {
             categoryData.clear()
             it?.let { it1 ->

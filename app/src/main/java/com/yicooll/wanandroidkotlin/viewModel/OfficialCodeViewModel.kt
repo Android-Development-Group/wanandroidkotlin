@@ -1,13 +1,12 @@
 package com.yicooll.wanandroidkotlin.viewModel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeCategory
 import com.yicooll.wanandroidkotlin.entity.ModelOfficialCodeList
 import com.yicooll.wanandroidkotlin.repository.OfficialCodeRepository
 
-class OfficialCodeViewModel(application: Application) : AndroidViewModel(application) {
+class OfficialCodeViewModel : ViewModel() {
 
     private var officialCodeCategoryLiveData: MutableLiveData<ModelOfficialCodeCategory>? = null
     private var repository: OfficialCodeRepository? = null

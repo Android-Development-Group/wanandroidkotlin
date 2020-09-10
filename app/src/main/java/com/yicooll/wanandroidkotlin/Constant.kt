@@ -15,6 +15,6 @@ class Constant {
         const val ONE_PAGE_COUNT = 20
         const val NETWORK_ERROR = "网络异常"
         const val FRESH_CODE = 1000   //刷新的code
-        const val LOADING_DELAYED:Long = 800   //加载动画时间
+        const val LOADING_DELAYED: Long = 800   //加载动画时间
     }
 }

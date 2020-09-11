@@ -19,8 +19,8 @@ class CollectRepository {
     }
 
     fun getCollectList(pageNum: Int) {
-        val clicent = RetrofitUtil.getRetorfit()
-        val service = clicent!!.create(CollectService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(CollectService::class.java)
         val url = "lg/collect/list/$pageNum/json"
         service.getCollectList(url)
                 .subscribeOn(Schedulers.io())

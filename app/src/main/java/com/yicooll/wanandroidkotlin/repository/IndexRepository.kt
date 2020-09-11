@@ -21,8 +21,8 @@ class IndexRepository {
     }
 
     fun getIndexArtical(pageNum: Int) {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(IndexService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(IndexService::class.java)
         service.getIndexArtical("article/list/$pageNum/json")
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -56,8 +56,8 @@ class IndexRepository {
     }
 
     fun getIndexBanner() {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(IndexService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(IndexService::class.java)
         service.getIndexBanner()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

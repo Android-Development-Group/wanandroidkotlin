@@ -22,8 +22,8 @@ class ArticalSystemRepository {
     }
 
     fun getArticalSystemCatogry() {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(ArticalSystemService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(ArticalSystemService::class.java)
         service.getActicalSystemCatogry()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

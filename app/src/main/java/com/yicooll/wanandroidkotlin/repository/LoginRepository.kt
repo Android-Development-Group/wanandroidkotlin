@@ -24,8 +24,8 @@ class LoginRepository {
     }
 
     fun doLogin(username: String, password: String) {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(UserService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(UserService::class.java)
         service.doLogin(username, password)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -50,8 +50,8 @@ class LoginRepository {
     }
 
     fun doRegister(username: String, password: String, repassword: String) {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(UserService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(UserService::class.java)
         service.doRegister(username, password, repassword)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

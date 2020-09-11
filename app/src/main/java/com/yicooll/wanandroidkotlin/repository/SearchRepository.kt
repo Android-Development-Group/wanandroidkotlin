@@ -18,8 +18,8 @@ class SearchRepository {
     }
 
     fun getSearchData(keyword: String, pageNum: Int) {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(SearchService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(SearchService::class.java)
         var url = "article/query/$pageNum/json"
         service.searchArtical(url, keyword)
                 .subscribeOn(Schedulers.io())

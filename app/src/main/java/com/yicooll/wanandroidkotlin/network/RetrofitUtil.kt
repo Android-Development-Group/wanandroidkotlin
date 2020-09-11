@@ -13,12 +13,10 @@ import java.io.File
 import java.util.concurrent.TimeUnit
 
 
-class RetrofitUtil {
+class RetrofitUtil private constructor() {
 
     companion object {
         val baseUrl: String = "https://www.wanandroid.com/"
-
-        private var mRetrofit: Retrofit? = null
 
         private val cacheDictionary: File = App.getInstance()!!.cacheDir
         private val cacheFile = File(cacheDictionary, "cachetest")
@@ -34,25 +32,39 @@ class RetrofitUtil {
         private val mOkHttpClient = OkHttpClient.Builder().addInterceptor(mHttpLoggingInterceptor)
                 .addInterceptor(ReceivedCookiesInterceptor())
                 .addInterceptor(AddCookiesInterceptor())
-                .connectTimeout(8 * 1000, TimeUnit.SECONDS)
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(40, TimeUnit.SECONDS)
                 .cache(Cache(cacheFile, cacheSize))
                 .build()
 
-        fun getRetorfit(): Retrofit? {
-            if (mRetrofit == null) {
-                synchronized(RetrofitUtil::class.java) {
-                    if (mRetrofit == null) {
-                        //用了自定义的拦截就不能打印日志
-                        mHttpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-                        mRetrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-                                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                                .client(mOkHttpClient)
-                                .baseUrl(baseUrl)
-                                .build()
-                    }
-                }
-            }
-            return mRetrofit
+//        private var mRetrofit: Retrofit? = null
+//
+//        fun getRetorfit(): Retrofit? {
+//            if (mRetrofit == null) {
+//                synchronized(RetrofitUtil::class) {
+//                    if (mRetrofit == null) {
+//                        //用了自定义的拦截就不能打印日志
+//                        mHttpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+//                        mRetrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
+//                                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                                .client(mOkHttpClient)
+//                                .baseUrl(baseUrl)
+//                                .build()
+//                    }
+//                }
+//            }
+//            return mRetrofit
+//        }
+
+        val instance: Retrofit by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            //用了自定义的拦截就不能打印日志
+            mHttpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .client(mOkHttpClient)
+                    .baseUrl(baseUrl)
+                    .build()
         }
     }
 }

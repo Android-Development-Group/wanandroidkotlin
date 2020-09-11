@@ -24,8 +24,8 @@ class ProjectRepository {
     }
 
     fun getProjectByType(cid: Int, pageNum: Int) {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(ProjectService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(ProjectService::class.java)
         val url = "project/list/$pageNum/json?cid=$cid"
         service.getProjectByType(url)
                 .subscribeOn(Schedulers.io())
@@ -50,8 +50,8 @@ class ProjectRepository {
     }
 
     fun getProjectCategory() {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(ProjectService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(ProjectService::class.java)
         service.getProjectCategory()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())

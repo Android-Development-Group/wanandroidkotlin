@@ -22,8 +22,8 @@ class ArticalSystemListRepository(cid: Int, pageNum: Int) {
     }
 
     fun getArticalSystemList(cid: Int, pageNum: Int) {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(ArticalSystemService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(ArticalSystemService::class.java)
         val url = "article/list/$pageNum/json?cid=$cid"
         service.getArticalSystemList(url)
                 .subscribeOn(Schedulers.io())

@@ -24,8 +24,8 @@ class OfficialCodeRepository {
     }
 
     fun getOfficialCodeCategory() {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(OfficialCodeService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(OfficialCodeService::class.java)
         service.getOfficialCodeCategory()
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -48,8 +48,8 @@ class OfficialCodeRepository {
     }
 
     fun getOfficialCodeList(id: Int, pageNum: Int) {
-        val client = RetrofitUtil.getRetorfit()
-        val service = client!!.create(OfficialCodeService::class.java)
+        val client = RetrofitUtil.instance
+        val service = client.create(OfficialCodeService::class.java)
         val url = "wxarticle/list/$id/$pageNum/json"
         service.getOfficialCodeList(url)
                 .subscribeOn(Schedulers.io())

@@ -21,7 +21,7 @@ class ImageUtils {
             Glide.with(imageview.context)
                     .load(url)
                     .apply(RequestOptions.bitmapTransform(
-                            BlurTransformation(imageview.context)))
+                            BlurTransformation(imageview.context!!)))
                     .into(imageview)
         }
 

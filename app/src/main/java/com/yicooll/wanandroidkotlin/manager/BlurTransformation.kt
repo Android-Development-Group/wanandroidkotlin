@@ -26,7 +26,7 @@ import java.security.MessageDigest
  * PackageName：com.yicooll.wanandroidkotlin.manager.
  * @author 吴天强
  */
-class BlurTransformation constructor(context: Context?) : BitmapTransformation() {
+class BlurTransformation constructor(context: Context) : BitmapTransformation() {
 
     private var context: Context? = null
     private var blurRadius = 20 //模糊度 0=< blurRadius >=25
@@ -35,7 +35,7 @@ class BlurTransformation constructor(context: Context?) : BitmapTransformation()
      * @param context    context
      * @param blurRadius 模糊度 最大25
      */
-    constructor(context: Context?, @IntRange(from = 0, to = 25) blurRadius: Int) : this(context) {
+    constructor(context: Context, @IntRange(from = 0, to = 25) blurRadius: Int) : this(context) {
         this.context = context
         this.blurRadius = blurRadius
     }

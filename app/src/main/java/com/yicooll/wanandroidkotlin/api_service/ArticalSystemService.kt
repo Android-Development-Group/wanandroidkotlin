@@ -9,8 +9,8 @@ import retrofit2.http.Url
 interface ArticalSystemService {
 
     @GET("tree/json")
-    fun  getActicalSystemCatogry():Observable<ModelSystemCatogry>
+    fun getActicalSystemCatogry(): Observable<ModelSystemCatogry>
 
     @GET
-    fun getArticalSystemList(@Url url:String):Observable<ModelArticalSystemList>
+    fun getArticalSystemList(@Url url: String): Observable<ModelArticalSystemList>
 }

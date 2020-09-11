@@ -9,9 +9,9 @@ import retrofit2.http.Url
 interface ProjectService {
 
     @GET
-    fun  getProjectByType(@Url url:String):Observable<ModelProjectList>
+    fun getProjectByType(@Url url: String): Observable<ModelProjectList>
 
 
     @GET("project/tree/json")
-    fun  getProjectCategory():Observable<ModelProjectCategory>
+    fun getProjectCategory(): Observable<ModelProjectCategory>
 }

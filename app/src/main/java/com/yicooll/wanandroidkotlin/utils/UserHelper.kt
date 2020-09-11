@@ -2,20 +2,11 @@ package com.yicooll.wanandroidkotlin.utils
 
 import android.content.Context
 
-class UserHelper {
+class UserHelper private constructor() {
 
     companion object {
-        private var instance: UserHelper? = null
-
-        fun getInstance(): UserHelper? {
-            if (instance == null) {
-                synchronized(UserHelper::class) {
-                    if (instance == null) {
-                        instance = UserHelper()
-                    }
-                }
-            }
-            return instance
+        val instance: UserHelper by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            UserHelper()
         }
     }
 
@@ -27,7 +18,7 @@ class UserHelper {
         PreferenceHelper.putBoolean(context, "isLogin", false)
         val cookies = HashSet<String>()
         cookies.clear()
-        PreferenceHelper.putStringSet(context, "cookie",cookies)
+        PreferenceHelper.putStringSet(context, "cookie", cookies)
     }
 
 }

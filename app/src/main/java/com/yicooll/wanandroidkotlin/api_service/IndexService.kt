@@ -9,8 +9,8 @@ import retrofit2.http.Url
 interface IndexService {
 
     @GET("banner/json")
-    fun getIndexBanner() :Observable<ModelIndexBanner>
+    fun getIndexBanner(): Observable<ModelIndexBanner>
 
     @GET
-    fun getIndexArtical(@Url url:String) :Observable<ModelIndexArtical>
+    fun getIndexArtical(@Url url: String): Observable<ModelIndexArtical>
 }

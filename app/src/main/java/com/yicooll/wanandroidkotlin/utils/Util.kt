@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.TypedValue
 import com.yicooll.wanandroidkotlin.App
 import java.text.SimpleDateFormat
+import java.util.*
 
 class Util {
 
@@ -11,7 +12,7 @@ class Util {
 
         fun formatData(time: Long?): String {
             if (time != null) {
-                val sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                val sf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA)
                 return sf.format(time)
             }
 

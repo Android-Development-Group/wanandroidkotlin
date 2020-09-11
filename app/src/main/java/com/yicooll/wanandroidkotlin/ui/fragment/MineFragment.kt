@@ -1,6 +1,5 @@
 package com.yicooll.wanandroidkotlin.ui.fragment
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,11 +39,11 @@ class MineFragment : BaseFragment() {
         }
 
         tv_login_out.setOnClickListener {
-            UserHelper.getInstance()?.loginOut(activity!!.applicationContext)
+            UserHelper.instance.loginOut(activity!!)
             displayView()
         }
         rl_collect.setOnClickListener {
-            if (UserHelper.getInstance()?.isLogin(activity as Activity)!!) {
+            if (UserHelper.instance.isLogin(activity!!)) {
                 ToActivityHelper.getInstance()!!.toActivity(activity!!, CollectActivity::class.java)
             } else {
                 ToActivityHelper.getInstance()!!.toActivity(activity!!, LoginActivity::class.java)
@@ -58,7 +57,7 @@ class MineFragment : BaseFragment() {
 
 
     fun displayView() {
-        if (UserHelper.getInstance()?.isLogin(activity!!.applicationContext)!!) {
+        if (UserHelper.instance.isLogin(activity!!)) {
             tv_login_out.visibility = View.VISIBLE
             tv_login.visibility = View.GONE
             iv_head.visibility = View.VISIBLE
@@ -74,6 +73,6 @@ class MineFragment : BaseFragment() {
     }
 
     companion object {
-        val url: String = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542110989472&di=e206dfdad3d1197025ddc03bca0b013c&imgtype=0&src=http%3A%2F%2Fwww.pig66.com%2Fuploadfile%2F2017%2F1209%2F20171209121323978.png"
+        const val url: String = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542110989472&di=e206dfdad3d1197025ddc03bca0b013c&imgtype=0&src=http%3A%2F%2Fwww.pig66.com%2Fuploadfile%2F2017%2F1209%2F20171209121323978.png"
     }
 }

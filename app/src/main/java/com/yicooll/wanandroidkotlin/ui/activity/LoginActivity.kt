@@ -5,9 +5,9 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import com.blankj.utilcode.util.KeyboardUtils
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.base.BaseActivity
-import com.yicooll.wanandroidkotlin.entity.ModelLogin
 import com.yicooll.wanandroidkotlin.utils.PreferenceHelper
 import com.yicooll.wanandroidkotlin.viewModel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : BaseActivity() {
 
     private var vm: LoginViewModel? = null
+    private var isLogin: Boolean = false
 
     override fun getContentViewLayoutId(): Int {
         return R.layout.activity_login
@@ -31,38 +32,21 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        vm = ViewModelProvider(this).get(LoginViewModel::class.java)
-
         tv_login.setOnClickListener {
+            isLogin = true
             invalidateInfo()
         }
-    }
-
-    fun loginSuccess(it1: ModelLogin?) {
-        showToast("登录成功")
-        PreferenceHelper.putBoolean(this, "isLogin", true)
-        finish()
-    }
-
-    private fun invalidateInfo() {
-        if (et_usernmae.text.toString().trim() == "") {
-            showToast("请输入用户名")
-            return
+        tv_register.setOnClickListener {
+            isLogin = false
+            invalidateInfo()
         }
-        if (et_password.text.toString().trim() == "") {
-            showToast("请输入密码")
-            return
-        }
-        if (et_password.text.toString().length < 6) {
-            showToast("请输入6位以上密码")
-            return
-        }
-        vm?.doLogin(et_usernmae.text.toString().trim(), et_password.text.toString().trim())
 
-        vm!!.getLodinData()?.observe(this, {
+        vm = ViewModelProvider.NewInstanceFactory().create(LoginViewModel::class.java)
+        vm?.getLodinData()?.observe(this, {
+//            Log.i(TAG, "getLodinData: $it")
             it?.let { it1 ->
                 if (it1.errorCode == 0) {
-                    loginSuccess(it1)
+                    loginOrRegisterSuccess(it1)
                 } else {
                     showToast(it1.errorMsg)
                 }
@@ -71,5 +55,45 @@ class LoginActivity : BaseActivity() {
                 showToast("网络异常")
             }
         })
+        vm?.getRegisterData()?.observe(this, {
+//            Log.i(TAG, "getLodinData: $it")
+            it?.let() { it1 ->
+                if (it1.errorCode == 0) {
+                    loginOrRegisterSuccess(it1)
+                } else {
+                    showToast(it1.errorMsg)
+                }
+            }
+            if (it == null) {
+                showToast("网络异常")
+            }
+        })
+    }
+
+    private fun loginOrRegisterSuccess(it: Any) {
+        showToast(if (isLogin) "登录成功" else "注册成功")
+        if (isLogin) {
+            PreferenceHelper.putBoolean(this, "isLogin", true)
+            finish()
+        }
+    }
+
+    private fun invalidateInfo() {
+        KeyboardUtils.hideSoftInput(this)
+        val usernmae = et_usernmae.text.toString().trim()
+        val password = et_password.text.toString().trim()
+        if (usernmae.isEmpty()) {
+            showToast("请输入用户名")
+            return
+        }
+        if (password.isEmpty()) {
+            showToast("请输入密码")
+            return
+        }
+        if (password.length < 6) {
+            showToast("请输入6位以上密码")
+            return
+        }
+        vm?.doLoginOoRegister(isLogin, usernmae, password)
     }
 }

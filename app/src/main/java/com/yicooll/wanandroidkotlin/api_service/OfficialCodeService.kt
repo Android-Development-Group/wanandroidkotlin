@@ -12,5 +12,5 @@ interface OfficialCodeService {
     fun getOfficialCodeCategory(): Observable<ModelOfficialCodeCategory>
 
     @GET
-    fun getOfficialCodeList(@Url url:String):Observable<ModelOfficialCodeList>
+    fun getOfficialCodeList(@Url url: String): Observable<ModelOfficialCodeList>
 }

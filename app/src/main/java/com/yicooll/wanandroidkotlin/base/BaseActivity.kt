@@ -2,11 +2,11 @@ package com.yicooll.wanandroidkotlin.base
 
 import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
 import com.yicooll.wanandroidkotlin.R
 import com.yicooll.wanandroidkotlin.entity.Event
@@ -17,12 +17,17 @@ import kotlinx.android.synthetic.main.activity_base.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
+    companion object {
+        var TAG: String? = null
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Density.setCustomDensity(this, application)
         setContentView(R.layout.activity_base)
-        var view: View = layoutInflater.inflate(getContentViewLayoutId(), ll_content, false)
+        TAG = this::class.simpleName
+        val view: View = layoutInflater.inflate(getContentViewLayoutId(), ll_content, false)
         ll_content.addView(view)
         if (regEvent() && !EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this)

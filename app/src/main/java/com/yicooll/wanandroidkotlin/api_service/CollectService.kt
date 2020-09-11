@@ -8,5 +8,5 @@ import retrofit2.http.Url
 interface CollectService {
 
     @GET
-    fun  getCollectList(@Url url:String):Observable<ModelCollect>
+    fun getCollectList(@Url url: String): Observable<ModelCollect>
 }
